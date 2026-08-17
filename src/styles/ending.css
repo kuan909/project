@@ -1,0 +1,89 @@
+.finale, .ending {
+  max-width: 820px;
+  min-height: calc(100vh - 76px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 50px 24px;
+  text-align: center;
+}
+.seed {
+  display: grid;
+  width: 88px;
+  height: 88px;
+  place-items: center;
+  margin: 24px 0;
+  border-radius: 50%;
+  color: #e7c88b;
+  background: #204750;
+  box-shadow: 0 12px 35px rgba(31, 72, 81, .2);
+  font-size: 42px;
+}
+.finale h1, .ending h1 {
+  max-width: 650px;
+  color: #193b46;
+  font: 800 clamp(38px, 6vw, 64px)/1 'Playfair Display', serif;
+}
+.finale > p, .ending > p { max-width: 590px; margin: 20px auto 30px; color: #617370; line-height: 1.7; }
+.finale__choices { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.finale__choices button {
+  padding: 21px 15px;
+  border: 1px solid #ced5ce;
+  border-radius: 6px;
+  color: #25464d;
+  background: rgba(255, 255, 255, .6);
+  transition: .2s ease;
+}
+.finale__choices button:hover { border-color: #bd674c; transform: translateY(-4px); }
+.finale__choices b, .finale__choices small { display: block; }
+.finale__choices small { margin-top: 7px; color: #83908c; }
+.ending { position: relative; overflow: hidden; }
+.ending__sun {
+  width: 120px;
+  height: 120px;
+  margin: 24px;
+  border-radius: 50%;
+  background: #eeb26c;
+  box-shadow: 0 0 80px rgba(238, 178, 108, .65);
+}
+.ending__stats { display: flex; gap: 34px; margin-bottom: 30px; color: #7b8985; font-size: 12px; }
+.ending__stats b { display: block; margin-top: 4px; color: #26464d; font-size: 17px; }
+.primary-button {
+  padding: 14px 24px;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  background: #bd674c;
+  font-weight: 700;
+}
+.finale__rescue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 2px;
+  padding: 10px 14px;
+  border-left: 3px solid #bd674c;
+  color: #31545a;
+  background: rgba(255, 255, 255, .58);
+  font-size: 12px;
+}
+.finale__rescue span { color: #bd674c; font-size: 20px; }
+.storm-scene {
+  width: min(360px, 90vw);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 28px 0;
+  color: #526a6c;
+  font-size: 64px;
+}
+.storm-scene b { color: #bd674c; font-size: 48px; transform: rotate(12deg); }
+.storm-scene span:last-child { color: #d9a354; }
+.ending__lesson { max-width: 520px; margin: -8px 0 28px; color: #31545a; font-size: 13px; line-height: 1.6; }
+@media (max-width: 650px) {
+  .finale__choices { grid-template-columns: 1fr; }
+  .finale { justify-content: flex-start; }
+  .ending__stats { gap: 20px; }
+}

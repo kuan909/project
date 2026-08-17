@@ -1,0 +1,43 @@
+.flight-menu-overlay {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(10, 31, 38, .76);
+  backdrop-filter: blur(7px);
+}
+
+.flight-menu {
+  position: relative;
+  width: min(590px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: clamp(28px, 5vw, 48px);
+  border-radius: 10px;
+  color: #25444b;
+  background: #f7f1e5;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .3);
+}
+
+.flight-menu__close { position: absolute; top: 14px; right: 17px; border: 0; color: #71807d; background: transparent; font-size: 26px; }
+.flight-menu__plane { margin: 26px 0 14px; color: #bd674c; font-size: 46px; transform: rotate(-8deg); }
+.flight-menu h2 { margin-top: 10px; color: #193b46; font: 700 clamp(30px, 6vw, 42px) 'Playfair Display', serif; }
+.flight-menu__lead { margin: 12px 0 26px; color: #61706e; line-height: 1.6; }
+.flight-menu__actions { display: flex; gap: 10px; margin-top: 26px; }
+.flight-menu__actions--stacked { flex-direction: column; }
+.flight-menu__actions button { flex: 1; padding: 14px 18px; border-radius: 5px; font-weight: 800; }
+.flight-menu__primary { border: 0; color: white; background: #bd674c; }
+.flight-menu__secondary { border: 1px solid #c9c8bd; color: #31545b; background: #fffdf7; }
+.flight-rules { display: grid; gap: 12px; margin-top: 24px; }
+.flight-rules article { display: flex; gap: 13px; padding: 14px; border: 1px solid #ddd8ca; border-radius: 6px; background: #fffdf7; }
+.flight-rules article > b { display: grid; flex: 0 0 30px; height: 30px; place-items: center; border-radius: 50%; color: white; background: #315864; }
+.flight-rules strong { color: #25444b; }
+.flight-rules p { margin-top: 4px; color: #687774; font-size: 13px; line-height: 1.5; }
+.flight-rules kbd { padding: 1px 5px; border: 1px solid #c9c8bd; border-radius: 3px; background: #eeeadd; font: inherit; font-weight: 800; }
+
+@media (max-width: 520px) {
+  .flight-menu { padding: 30px 20px 22px; }
+  .flight-menu__actions { flex-direction: column; }
+}

@@ -1,0 +1,162 @@
+.world-map {
+  position: relative;
+  max-width: 1180px;
+  height: min(54vw, 520px);
+  min-height: 390px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(26, 64, 70, .04), rgba(26, 64, 70, .04)),
+    url('/assets/floating-islands.png') center / cover no-repeat;
+  box-shadow: 0 18px 50px rgba(39, 70, 74, .16);
+}
+.world-map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.cloud {
+  position: absolute;
+  width: 310px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(238, 239, 222, .56);
+  filter: blur(13px);
+}
+.cloud--one { left: -80px; top: 23%; animation: cloud-drift 13s ease-in-out infinite alternate; }
+.cloud--two { right: -60px; bottom: 21%; animation: cloud-drift 16s ease-in-out infinite alternate-reverse; }
+.route {
+  position: absolute;
+  z-index: 1;
+  width: 33%;
+  border-top: 2px dashed rgba(243, 237, 211, .54);
+  transform-origin: left;
+}
+.route--one { top: 52%; left: 21%; transform: rotate(-23deg); }
+.route--two { top: 36%; left: 52%; transform: rotate(28deg); }
+.plane {
+  position: absolute;
+  z-index: 3;
+  top: 46%;
+  left: 49%;
+  color: #f7ead2;
+  font-size: 34px;
+  transform: rotate(-8deg);
+  filter: drop-shadow(-10px 8px 0 rgba(28, 60, 66, .18));
+  transform: translate(-50%, -50%) rotate(-8deg);
+  animation: plane-ready 1.5s ease-in-out infinite;
+  border: 0;
+  background: transparent;
+}
+.plane small { position: absolute; top: 34px; left: -7px; padding: 3px 7px; border-radius: 9px; color: #244b52; background: #fff3d7; font-size: 9px; font-weight: 800; opacity: 0; transition: opacity .2s; }
+.plane:hover small, .plane:focus-visible small { opacity: 1; }
+.plane-crew {
+  position: absolute;
+  z-index: 6;
+  top: 51%;
+  left: 49%;
+  display: grid;
+  justify-items: center;
+  color: #fff3d7;
+  text-shadow: 0 2px 8px #173d47;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.plane-crew span { font-size: 17px; }
+.plane-crew strong { padding: 3px 7px; border-radius: 3px; background: rgba(25, 59, 65, .86); font-size: 9px; }
+.plane-guide { position: absolute; z-index: 7; top: 28%; left: 49%; display: flex; flex-direction: column; align-items: center; color: #fff8df; text-shadow: 0 2px 8px #24484e; transform: translateX(-50%); animation: guide-bounce 1s ease-in-out infinite alternate; pointer-events: none; }
+.plane-guide strong { padding: 6px 10px; border-radius: 4px; background: rgba(25,59,65,.86); font-size: 10px; letter-spacing: .12em; }
+.plane-guide span { font-size: 28px; line-height: 1; }
+.plane-guide--hidden { display: none; }
+.destination-hint { position: absolute; z-index: 7; top: 16px; left: 50%; padding: 9px 16px; border-radius: 20px; color: #fff7df; background: rgba(25,59,65,.88); font-size: 12px; font-weight: 800; transform: translateX(-50%); }
+.island {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  color: #173d47;
+  background: transparent;
+}
+.island--1 { left: 8%; bottom: 12%; }
+.island--2 { left: 34%; top: 7%; }
+.island--3 { left: 47%; bottom: 7%; }
+.island--4 { left: 4%; top: 8%; }
+.island--5 { right: 8%; top: 7%; }
+.island--6 { right: 5%; bottom: 14%; }
+.island__rock {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  margin-bottom: 9px;
+  border: 2px solid rgba(255,255,255,.88);
+  border-radius: 50%;
+  color: #fff4d8;
+  background: rgba(28, 67, 73, .86);
+  box-shadow: 0 8px 20px rgba(30, 63, 68, .28);
+  font-size: 18px;
+  transition: .2s ease;
+}
+.island:hover .island__rock { transform: scale(1.12); box-shadow: 0 10px 25px rgba(30,63,68,.36); }
+.island strong { padding: 4px 8px; border-radius: 3px; background: rgba(247, 241, 218, .88); font-size: 13px; }
+.island small { margin-top: 5px; padding: 2px 5px; color: #244b52; background: rgba(247,241,218,.72); font-size: 9px; font-weight: 700; }
+.island--done { opacity: .58; }
+.island--done .island__rock { background: #6b8178; }
+.island:disabled:not(.island--done) { opacity: .82; cursor: not-allowed; }
+.island:disabled:not(.island--done) .walker { animation-play-state: paused; }
+.walker { position: relative; width: 28px; height: 48px; margin-bottom: -5px; animation: character-hop 1.4s ease-in-out infinite; }
+.walker i { position: absolute; display: block; background: #243f43; }
+.walker__head { width: 12px; height: 12px; left: 8px; top: 0; border-radius: 50%; background: #e0aa78 !important; }
+.walker__body { width: 15px; height: 22px; left: 7px; top: 11px; border-radius: 7px 7px 3px 3px; }
+.walker--2 .walker__body { background: #a64f3b; }
+.walker--3 .walker__body { background: #d29154; }
+.walker__arm { width: 4px; height: 20px; top: 13px; border-radius: 3px; transform-origin: top; }
+.walker__arm--left { left: 4px; animation: arm-wave .8s ease-in-out infinite alternate; }
+.walker__arm--right { right: 3px; transform: rotate(-20deg); }
+.walker__leg { width: 5px; height: 17px; top: 30px; border-radius: 3px; transform-origin: top; }
+.walker__leg--left { left: 7px; animation: leg-walk .7s ease-in-out infinite alternate; }
+.walker__leg--right { right: 7px; animation: leg-walk .7s ease-in-out infinite alternate-reverse; }
+
+@keyframes character-hop { 50% { transform: translateY(-4px); } }
+@keyframes arm-wave { to { transform: rotate(55deg); } }
+@keyframes leg-walk { to { transform: rotate(18deg); } }
+@keyframes cloud-drift { to { transform: translateX(80px); } }
+@keyframes plane-ready { 50% { transform: translate(-50%, -56%) rotate(-5deg) scale(1.08); } }
+@keyframes guide-bounce { to { transform: translate(-50%, 8px); } }
+.map-caption {
+  position: absolute;
+  z-index: 5;
+  right: 18px;
+  bottom: 15px;
+  left: 18px;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(28, 61, 67, .75);
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+.map-caption b { color: #274d53; }
+
+@media (max-width: 650px) {
+  .world-map { min-height: 650px; border-radius: 0; background-position: center; }
+  .island--1 { left: 5%; top: 8%; bottom: auto; }
+  .island--2 { right: 5%; left: auto; top: 8%; }
+  .island--3 { left: 5%; top: 40%; bottom: auto; }
+  .island--4 { right: 5%; left: auto; top: 40%; }
+  .island--5 { left: 5%; top: 70%; right: auto; }
+  .island--6 { right: 5%; top: 70%; bottom: auto; }
+  .island__rock { width: 44px; height: 44px; }
+  .plane { left: 50%; top: 57%; }
+  .plane-guide { left: 50%; top: 49%; }
+  .plane-crew { left: 50%; top: 61%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane, .cloud, .walker, .walker i { animation: none; }
+}

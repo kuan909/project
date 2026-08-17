@@ -50,7 +50,7 @@ export function Entries({ userEmail }: { userEmail: string }) {
 
   return (
     <section className="card">
-      <p className="hello">Привет, {userEmail} 👋</p>
+      <p className="hello">Пока, {userEmail} 👋</p>
       <h2>Мои записи</h2>
 
       <form onSubmit={add} className="form-row">

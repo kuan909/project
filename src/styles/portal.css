@@ -1,0 +1,109 @@
+.world-map--beyond {
+  background-image:
+    linear-gradient(rgba(38, 32, 68, .08), rgba(19, 42, 65, .12)),
+    url('/assets/portal-islands.jpg');
+  background-position: center;
+}
+
+.world-map--beyond .cloud,
+.world-map--beyond .route {
+  opacity: .22;
+}
+
+.world-map--beyond .portal-gate {
+  top: 1%;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%) scale(.7);
+}
+
+.world-map--beyond .island--1 { left: 9%; top: 22%; bottom: auto; }
+.world-map--beyond .island--2 { left: 46%; top: 10%; }
+.world-map--beyond .island--3 { right: 8%; left: auto; top: 18%; bottom: auto; }
+
+.world-map--beyond .island__rock {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(255, 255, 255, .74);
+}
+
+.world-map--beyond .island--1 .island__rock {
+  border-radius: 60% 40% 55% 35%;
+  background: rgba(42, 103, 119, .9);
+}
+
+.world-map--beyond .island--2 .island__rock {
+  border-radius: 0;
+  color: #294b52;
+  background: rgba(218, 225, 196, .94);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.world-map--beyond .island--3 .island__rock {
+  border-radius: 0;
+  background: rgba(70, 57, 103, .92);
+  clip-path: polygon(50% 0, 93% 25%, 82% 78%, 50% 100%, 18% 78%, 7% 25%);
+}
+
+.portal-gate {
+  position: absolute;
+  z-index: 8;
+  right: 3%;
+  top: 43%;
+  display: grid;
+  justify-items: center;
+  border: 0;
+  color: #fff7df;
+  background: transparent;
+}
+
+.portal-gate__ring {
+  position: relative;
+  display: grid;
+  width: 72px;
+  height: 94px;
+  place-items: center;
+  border: 5px solid #e6b77e;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #f9df9d 0 9%, #7a6aaa 25%, #294f67 64%, #132f3a 72%);
+  box-shadow: 0 0 20px rgba(240, 196, 130, .8), inset 0 0 18px #d7a6ff;
+  animation: portal-float 1.8s ease-in-out infinite;
+}
+
+.portal-gate__ring::before,
+.portal-gate__ring::after,
+.portal-gate__ring i {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border: 2px dashed rgba(255, 238, 190, .72);
+  border-radius: 50%;
+  animation: portal-spin 7s linear infinite;
+}
+
+.portal-gate__ring::after { inset: 5px; animation-direction: reverse; }
+.portal-gate__ring i { inset: -17px 3px; border-style: dotted; animation-duration: 11s; }
+.portal-gate__ring b { font-size: 22px; text-shadow: 0 0 10px #fff; }
+.portal-gate strong { margin-top: 7px; padding: 3px 8px; border-radius: 3px; background: rgba(25, 59, 65, .9); font-size: 12px; }
+.portal-gate small { margin-top: 3px; padding: 2px 5px; color: #294b52; background: rgba(255, 243, 215, .88); font-size: 9px; font-weight: 800; }
+.portal-gate:hover .portal-gate__ring { filter: brightness(1.15); }
+.portal-gate:focus-visible { outline: 3px solid #fff3d7; outline-offset: 5px; border-radius: 8px; }
+
+@keyframes portal-spin { to { transform: rotate(360deg); } }
+@keyframes portal-float { 50% { transform: translateY(-7px) scale(1.04); } }
+
+@media (max-width: 650px) {
+  .portal-gate { right: 50%; top: 25%; transform: translateX(50%) scale(.82); }
+  .world-map--beyond { background-position: center; }
+  .world-map--beyond .portal-gate { top: 43%; left: 50%; right: auto; transform: translateX(-50%) scale(.68); }
+  .world-map--beyond .island--1 { left: 4%; top: 10%; }
+  .world-map--beyond .island--2 { right: 4%; left: auto; top: 10%; }
+  .world-map--beyond .island--3 { right: 50%; top: 67%; transform: translateX(50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-gate__ring,
+  .portal-gate__ring::before,
+  .portal-gate__ring::after,
+  .portal-gate__ring i { animation: none; }
+}

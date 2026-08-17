@@ -1,0 +1,155 @@
+.visit-scene {
+  position: relative;
+  min-height: 540px;
+  overflow: hidden;
+  background-image: var(--scene-image);
+  background-position: center;
+  background-size: cover;
+  isolation: isolate;
+}
+
+.visit-scene--lighthouse { --scene-image: url('/assets/island-lighthouse-realistic.png'); }
+.visit-scene--garden { --scene-image: url('/assets/island-garden-realistic.png'); }
+.visit-scene--foundry { --scene-image: url('/assets/island-foundry-realistic.png'); }
+.visit-scene--harbor { --scene-image: url('/assets/portal-harbor.jpg'); }
+.visit-scene--windfarm { --scene-image: url('/assets/portal-windfarm.jpg'); }
+.visit-scene--observatory { --scene-image: url('/assets/portal-observatory.jpg'); }
+
+.visit-scene__shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(13, 35, 39, .55) 100%);
+  pointer-events: none;
+}
+
+.real-person {
+  position: absolute;
+  z-index: 6;
+  width: 115px;
+  height: 230px;
+  object-fit: contain;
+  transform-origin: bottom;
+  filter: drop-shadow(0 12px 9px rgba(10, 24, 25, .48));
+  animation: real-person-breathe 2.4s ease-in-out infinite;
+}
+
+.person--courier {
+  bottom: 52px;
+  left: 5%;
+  animation: real-courier-arrives 1.5s ease-out both;
+}
+
+.person--local-one { right: 24%; bottom: 58px; animation-delay: -.3s; }
+.person--local-two { right: 5%; bottom: 49px; animation-delay: -.7s; }
+
+.speech {
+  position: absolute;
+  z-index: 7;
+  right: 14%;
+  bottom: 170px;
+  max-width: 300px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 12px 12px 3px;
+  color: #25464e;
+  background: rgba(255, 249, 233, .94);
+  box-shadow: 0 8px 22px rgba(16, 34, 36, .22);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.45;
+  animation: speech-pop .5s 1.3s both;
+}
+
+.scene-action {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff8dd;
+  background: rgba(13, 35, 39, .58);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  animation: action-enter .5s both;
+}
+
+.scene-action strong {
+  margin-top: 22px;
+  padding: 9px 15px;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 18px;
+  background: rgba(22, 54, 58, .9);
+  font-size: 13px;
+}
+
+.scene-action__dialogue {
+  max-width: 390px;
+  margin-top: 12px;
+  padding: 10px 13px;
+  border-radius: 12px 12px 3px;
+  color: #25464e;
+  text-align: center;
+  background: rgba(255, 249, 233, .95);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.action-object {
+  font-size: clamp(40px, 7vw, 75px);
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, .35));
+  animation: action-work 1.4s ease-in-out infinite alternate;
+}
+
+.pirate-rescue {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff8dd;
+  background: rgba(13, 35, 39, .68);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+.pirate-rescue__plane { font-size: 78px; filter: drop-shadow(0 10px 8px rgba(0, 0, 0, .3)); }
+.pirate-rescue__crew { display: flex; gap: 12px; margin-top: -8px; font-size: 30px; }
+.pirate-rescue__crew span { animation: board-plane 1.3s ease-in-out infinite alternate; }
+.pirate-rescue__crew span:nth-child(2) { animation-delay: -.35s; }
+.pirate-rescue__crew span:nth-child(3) { animation-delay: -.7s; }
+.pirate-rescue strong { margin-top: 16px; font-size: 17px; }
+.pirate-rescue small { margin-top: 5px; color: #c7d5d0; }
+
+@keyframes real-person-breathe {
+  50% { transform: translateY(-3px) scale(1.012); }
+}
+
+@keyframes real-courier-arrives {
+  from { left: -28%; transform: translateY(-120px) rotate(-8deg); }
+  to { left: 5%; transform: translateY(0); }
+}
+
+@keyframes speech-pop { from { opacity: 0; transform: scale(.5); } }
+@keyframes action-enter { from { opacity: 0; } }
+@keyframes action-work { to { transform: translateY(-14px) rotate(4deg); } }
+
+@keyframes board-plane { to { opacity: .35; transform: translateY(-35px) scale(.65); } }
+
+@media (max-width: 650px) {
+  .visit-scene { min-height: 330px; }
+  .real-person { width: 75px; height: 150px; }
+  .person--courier { bottom: 25px; }
+  .person--local-one { right: 23%; bottom: 30px; }
+  .person--local-two { bottom: 24px; }
+  .speech { right: 8%; bottom: 120px; max-width: 250px; }
+  .scene-action__dialogue { max-width: calc(100% - 30px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visit-scene * { animation: none !important; }
+}

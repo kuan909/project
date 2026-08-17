@@ -1,0 +1,144 @@
+.game-shell { min-height: 100vh; padding-bottom: 32px; background: #e8f0ee; }
+.game-status {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px max(24px, calc((100vw - 1180px) / 2));
+  color: #edf3ed;
+  background: #183a45;
+}
+.brand, .meters, .meter { display: flex; align-items: center; }
+.brand { gap: 11px; }
+.brand__mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid #d0966d;
+  border-radius: 50%;
+  color: #e5b47d;
+  font: 700 18px 'Playfair Display', serif;
+}
+.brand strong, .brand small, .meter small, .meter b { display: block; }
+.brand strong { font-family: 'Playfair Display', serif; }
+.brand small, .meter small { color: #9fb5b4; font-size: 9px; letter-spacing: .08em; }
+.meters { gap: clamp(16px, 4vw, 48px); }
+.meter { gap: 8px; }
+.meter > span { color: #dd9b75; }
+.meter b { margin-top: 2px; font-size: 13px; }
+.crew-status {
+  padding: 7px 10px;
+  border: 1px solid rgba(229, 180, 125, .45);
+  border-radius: 4px;
+  color: #f2c28d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.mission-intro {
+  max-width: 1180px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 0 auto;
+  padding: 42px 24px 26px;
+}
+.mission-intro h1 { margin-top: 8px; font: 800 38px 'Playfair Display', serif; color: #193b46; }
+.mission-intro p { max-width: 390px; color: #607270; line-height: 1.6; font-size: 14px; }
+.radio-message {
+  max-width: 700px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 22px auto 0;
+  padding: 14px 18px;
+  border-left: 3px solid #bd674c;
+  background: rgba(255, 255, 255, .52);
+}
+.radio-message__signal { font-size: 26px; color: #bd674c; }
+.radio-message small { color: #84918e; font-size: 9px; font-weight: 800; letter-spacing: .14em; }
+.radio-message p { margin-top: 4px; font-size: 13px; }
+
+.overlay {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(10, 31, 38, .72);
+  backdrop-filter: blur(6px);
+}
+.island-visit {
+  width: min(1100px, 100%);
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f7f1e5;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .28);
+}
+.mission-panel {
+  position: relative;
+  width: 100%;
+  padding: 38px;
+  background: #f7f1e5;
+}
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 17px;
+  border: 0;
+  color: #71807d;
+  background: transparent;
+  font-size: 25px;
+}
+.mission-symbol {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  margin: 22px 0 18px;
+  border-radius: 50%;
+  color: #f7f1e5;
+  background: #315864;
+  font-size: 26px;
+  animation: symbol-float 1.8s ease-in-out infinite;
+}
+@keyframes symbol-float { 50% { transform: translateY(-6px) rotate(4deg); } }
+.mission-panel h2 { color: #193b46; font: 700 30px 'Playfair Display', serif; }
+.mission-panel > p { margin: 13px 0 24px; color: #61706e; line-height: 1.65; }
+.choice-list { display: grid; gap: 10px; }
+.choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 17px;
+  border: 1px solid #d8d7ce;
+  border-radius: 5px;
+  color: #25444b;
+  text-align: left;
+  background: #fffdf7;
+  transition: .2s ease;
+}
+.choice:hover { border-color: #bd674c; transform: translateX(3px); }
+.choice strong, .choice small { display: block; }
+.choice small { margin-top: 4px; color: #87918e; font-size: 11px; }
+.choice > b { color: #bd674c; font-size: 19px; }
+.continue-button { width: 100%; padding: 15px 18px; border: 0; border-radius: 5px; color: white; background: #bd674c; font-weight: 800; }
+
+@media (max-width: 650px) {
+  .game-status { align-items: flex-start; gap: 14px; padding: 14px 18px; }
+  .brand small, .meter small { display: none; }
+  .meters { gap: 13px; }
+  .meter { gap: 4px; }
+  .crew-status { display: none; }
+  .mission-intro { display: block; padding-top: 28px; }
+  .mission-intro p { margin-top: 12px; }
+  .mission-panel { padding: 30px 22px 22px; }
+  .island-visit { max-height: calc(100vh - 24px); display: block; overflow-y: auto; }
+  .radio-message { margin-inline: 18px; }
+}

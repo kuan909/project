@@ -1,0 +1,42 @@
+.cockpit { position: relative; min-height: 100vh; overflow: hidden; color: #eef5ec; background: #152f35; user-select: none; }
+.cockpit__world { position: absolute; inset: -20%; transition: transform .08s linear; transform-origin: center; }
+.cockpit__photo { position: absolute; z-index: 2; inset: 0; background: url('/assets/realistic-cockpit.png') center / cover no-repeat; pointer-events: none; }
+.flight-sky { position: absolute; inset: 0; background: linear-gradient(rgba(71,135,147,.08),rgba(218,164,107,.18)), url('/assets/floating-islands.png') center / cover no-repeat; }
+.flight-clouds { position: absolute; top: 22%; left: 8%; width: 130%; color: rgba(255,249,226,.65); font-size: clamp(70px,12vw,170px); letter-spacing: 18vw; animation: cockpit-clouds 8s linear infinite; }
+.flight-islands i { position: absolute; width: 110px; height: 35px; border-radius: 50%; background: rgba(38,74,72,.38); filter: blur(4px); }
+.flight-islands i:nth-child(1) { top: 35%; left: 12%; }.flight-islands i:nth-child(2) { top: 45%; right: 15%; }.flight-islands i:nth-child(3) { top: 66%; left: 44%; }
+.cockpit__roof { position: absolute; z-index: 3; top: 0; right: 0; left: 0; height: 12vh; border-bottom: 9px solid #0c2228; background: linear-gradient(#162f35,#25434a); box-shadow: 0 12px 20px rgba(0,0,0,.24); }
+.cockpit__frame { position: absolute; z-index: 4; top: 6vh; bottom: 30vh; width: 12vw; min-width: 70px; background: linear-gradient(90deg,#173239,#284850,#10262c); box-shadow: 0 0 18px rgba(0,0,0,.35); }
+.cockpit__frame--left { left: -3vw; transform: skewX(8deg); }.cockpit__frame--right { right: -3vw; transform: skewX(-8deg); }
+.flight-hud { position: absolute; z-index: 6; top: 5vh; left: 50%; display: flex; gap: 3px; transform: translateX(-50%); }
+.flight-hud span { min-width: 120px; padding: 9px 13px; color: #aabfbc; background: rgba(13,38,44,.86); font-size: 9px; letter-spacing: .1em; text-align: center; }
+.flight-hud b { display: block; margin-top: 3px; color: #f4d19b; font-size: 14px; letter-spacing: 0; }
+.flight-destination { position: absolute; z-index: 7; top: 14vh; left: 50%; padding: 7px 13px; border: 1px solid rgba(235,205,153,.45); color: #bed0ca; background: rgba(13,38,44,.72); font-size: 10px; letter-spacing: .1em; transform: translateX(-50%); }
+.flight-destination b { color: #f4d19b; }
+.landing-warning { position: absolute; z-index: 9; top: 22vh; left: 50%; padding: 10px 17px; border: 1px solid #e59a6c; color: #fff1d4; background: rgba(137,61,45,.88); font-size: 11px; font-weight: 800; letter-spacing: .08em; transform: translateX(-50%); animation: landing-pulse .7s ease-in-out infinite alternate; }
+.stall-warning { position: absolute; z-index: 10; top: 31vh; left: 50%; padding: 10px 17px; color: white; background: rgba(174,45,36,.92); font-size: 12px; font-weight: 900; letter-spacing: .1em; transform: translateX(-50%); animation: landing-pulse .4s ease-in-out infinite alternate; }
+.dashboard { position: absolute; z-index: 5; right: -5%; bottom: -12%; left: -5%; height: 39vh; min-height: 260px; display: flex; justify-content: center; gap: 30px; padding-top: 34px; border-top: 12px solid #0b2228; border-radius: 45% 45% 0 0; background: linear-gradient(#2b494d,#173238 65%); box-shadow: 0 -18px 35px rgba(0,0,0,.3); }
+.gauge { position: relative; width: 98px; height: 98px; border: 7px solid #0c2227; border-radius: 50%; background: repeating-conic-gradient(#d0c49e 0 1deg,transparent 1deg 20deg),radial-gradient(circle,#304b4d 55%,#152b30 56%); box-shadow: inset 0 0 14px #07191d; }
+.gauge i { position: absolute; top: 45px; left: 47px; width: 39px; height: 3px; border-radius: 3px; background: #e27653; transform-origin: left; transition: transform .08s linear; }
+.gauge b { position: absolute; right: 0; bottom: 18px; left: 0; color: #d7d0b2; font-size: 9px; text-align: center; }
+.dashboard__lights { display: flex; gap: 8px; padding-top: 30px; }
+.dashboard__lights i { width: 12px; height: 12px; border-radius: 50%; background: #c8684d; box-shadow: 0 0 8px #c8684d; animation: cockpit-light 1s steps(2) infinite; }
+.dashboard__lights i:nth-child(2) { background: #d6ae63; box-shadow: 0 0 8px #d6ae63; animation-delay: -.4s; }.dashboard__lights i:nth-child(3) { background: #608878; box-shadow: 0 0 8px #608878; animation-delay: -.7s; }
+.throttle-control { position: absolute; z-index: 9; right: 8vw; bottom: 7vh; width: 150px; padding: 12px; border: 2px solid #17272a; border-radius: 8px; color: #d9caa7; background: rgba(22,43,45,.9); box-shadow: 0 6px 16px rgba(0,0,0,.4); }
+.throttle-control span,.throttle-control small { display: flex; justify-content: space-between; font-size: 9px; letter-spacing: .08em; }.throttle-control b { color: #f0b76e; }.throttle-control input { width: 100%; margin: 10px 0; accent-color: #c8754f; cursor: grab; }.throttle-control small { color: #91aaa3; }
+.steering-wheel { position: absolute; z-index: 8; bottom: 6vh; left: 50%; width: 190px; height: 190px; margin-left: -95px; border: 20px solid #121f22; border-radius: 50%; background: transparent; box-shadow: 0 7px 0 #080f11, inset 0 0 0 3px #4f5d5c; touch-action: none; }
+.steering-wheel::before,.steering-wheel::after,.steering-wheel i { content: ''; position: absolute; width: 69px; height: 19px; top: 65px; background: #111f22; }
+.steering-wheel::before { left: -7px; transform: rotate(14deg); }.steering-wheel::after { right: -7px; transform: rotate(-14deg); }.steering-wheel i { left: 40px; width: 72px; transform: rotate(90deg); }
+.steering-wheel span { position: absolute; z-index: 2; top: 45px; left: 45px; display: grid; width: 62px; height: 62px; place-items: center; border: 5px solid #0a171a; border-radius: 50%; color: #e3b46f; background: #29464b; font: 700 24px 'Playfair Display',serif; }
+.steering-wheel b { position: absolute; bottom: -40px; left: 65px; width: 23px; height: 75px; background: #101e21; }
+.flight-help { position: absolute; z-index: 9; bottom: 16px; width: 100%; color: #b7c5bd; font-size: 11px; text-align: center; letter-spacing: .04em; }
+.flight-result { position: fixed; z-index: 20; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px; text-align: center; background: rgba(10,30,35,.88); backdrop-filter: blur(8px); }
+.flight-result > span { display: grid; width: 72px; height: 72px; place-items: center; margin-bottom: 20px; border: 2px solid #d39268; border-radius: 50%; color: #f1c48e; font-size: 34px; }
+.flight-result h2 { font: 700 clamp(38px,6vw,62px) 'Playfair Display',serif; }.flight-result p { max-width: 430px; margin: 14px 0 28px; color: #b8c7c2; line-height: 1.6; }
+.flight-result button { padding: 14px 23px; border: 0; border-radius: 4px; color: white; background: #bd674c; font-weight: 700; }
+
+@keyframes cockpit-clouds { to { transform: translateX(-35%); } }
+@keyframes cockpit-light { 50% { opacity: .28; } }
+@keyframes landing-pulse { to { box-shadow: 0 0 22px rgba(229,154,108,.75); transform: translateX(-50%) scale(1.04); } }
+@media (max-width:650px) { .flight-hud { max-width: 96vw; overflow-x: auto; }.flight-hud span { min-width: 82px; padding-inline: 5px; }.cockpit__frame { min-width: 48px; }.dashboard { gap: 10px; }.gauge { width: 72px; height: 72px; }.gauge i { top: 31px; left: 33px; width: 28px; }.steering-wheel { width: 150px; height: 150px; margin-left: -75px; border-width: 16px; }.steering-wheel span { top: 33px; left: 33px; }.steering-wheel::before,.steering-wheel::after,.steering-wheel i { top: 50px; width: 48px; }.steering-wheel i { left: 34px; }.steering-wheel b { left: 51px; }.throttle-control { right: 8px; bottom: 16vh; width: 112px; }.flight-help { padding: 0 15px; } }
+@media (prefers-reduced-motion:reduce) { .cockpit * { animation: none !important; } }
