@@ -15,6 +15,7 @@ import {
   type Mission,
 } from '../lib/game';
 import '../styles/game.css';
+import '../styles/artifacts.css';
 import '../styles/world-map.css';
 import '../styles/portal.css';
 import '../styles/ending.css';

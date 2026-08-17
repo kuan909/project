@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Mission } from '../lib/game';
+import { SECRET_UNLOCK_COUNT, type Mission } from '../lib/game';
 import { PortalGate } from './PortalGate';
 
 type WorldMapProps = {
@@ -13,7 +13,10 @@ type WorldMapProps = {
 
 export function WorldMap({ missions, completed, onSelect, isChoosingDestination, piratesAboard, onPlane }: WorldMapProps) {
   const [isBeyondPortal, setIsBeyondPortal] = useState(false);
-  const regionMissions = isBeyondPortal ? missions.slice(3) : missions.slice(0, 3);
+  const isSecretUnlocked = completed.length >= SECRET_UNLOCK_COUNT;
+  const visibleMissions = missions.filter((mission) => !mission.isSecret || isSecretUnlocked);
+  const regionMissions = isBeyondPortal ? visibleMissions.slice(3) : visibleMissions.slice(0, 3);
+  const hasSecretSignal = isSecretUnlocked && !completed.includes('echo');
 
   return (
     <section
@@ -29,12 +32,12 @@ export function WorldMap({ missions, completed, onSelect, isChoosingDestination,
       </div>
       <button className="plane" onClick={onPlane} aria-label="Сесть в самолёт">➤<small>Лететь</small></button>
       {piratesAboard && <div className="plane-crew"><span>☠ ☠</span><strong>Пираты на борту</strong></div>}
-      <PortalGate isBeyondPortal={isBeyondPortal} onTravel={() => setIsBeyondPortal((value) => !value)} />
+      <PortalGate isBeyondPortal={isBeyondPortal} hasSecretSignal={hasSecretSignal} onTravel={() => setIsBeyondPortal((value) => !value)} />
       {regionMissions.map((mission, index) => {
         const done = completed.includes(mission.id);
         return (
           <button
-            className={`island island--${index + 1}${done ? ' island--done' : ''}`}
+            className={`island island--${index + 1}${mission.isSecret ? ' island--secret' : ''}${done ? ' island--done' : ''}`}
             disabled={done || !isChoosingDestination}
             key={mission.id}
             onClick={() => onSelect(mission)}
@@ -55,9 +58,9 @@ export function WorldMap({ missions, completed, onSelect, isChoosingDestination,
       })}
       <div className="map-caption">
         <span>{isBeyondPortal ? 'ЗА ПОРТАЛОМ · ВЫСОТА 7200' : 'ОБЛАЧНЫЙ ПОЯС · ВЫСОТА 3400'}</span>
-        <b>{completed.length}/{missions.length} доставок</b>
+        <b>{completed.length}/{visibleMissions.length} доставок</b>
       </div>
-      {isChoosingDestination && <div className="destination-hint">Куда летим? Выбери остров</div>}
+      {isChoosingDestination && <div className="destination-hint">{hasSecretSignal && isBeyondPortal ? 'Тайный остров обнаружен!' : 'Куда летим? Выбери остров'}</div>}
     </section>
   );
 }

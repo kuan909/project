@@ -46,6 +46,13 @@ const dialogues: Record<string, MissionDialogue> = {
       'deliver-film': 'Спасибо за плёнку. Мы передадим координаты по радио. До встречи!',
     },
   },
+  echo: {
+    greeting: 'Ты услышал мой сигнал. Архив ждал нового хранителя очень долго.',
+    replies: {
+      'restore-archive': 'Память вернулась. Теперь забытые маршруты снова существуют.',
+      'read-compass': 'Компас узнал тебя. Он приведёт самолёт домой из любого неба.',
+    },
+  },
 };
 
 export function getNpcDialogue(missionId: string, action?: string) {

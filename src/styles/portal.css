@@ -20,6 +20,7 @@
 .world-map--beyond .island--1 { left: 9%; top: 22%; bottom: auto; }
 .world-map--beyond .island--2 { left: 46%; top: 10%; }
 .world-map--beyond .island--3 { right: 8%; left: auto; top: 18%; bottom: auto; }
+.world-map--beyond .island--4 { right: 36%; left: auto; top: auto; bottom: 5%; }
 
 .world-map--beyond .island__rock {
   width: 54px;
@@ -44,6 +45,20 @@
   background: rgba(70, 57, 103, .92);
   clip-path: polygon(50% 0, 93% 25%, 82% 78%, 50% 100%, 18% 78%, 7% 25%);
 }
+
+.world-map--beyond .island--secret .walker { display: none; }
+.world-map--beyond .island--secret .island__rock {
+  border-color: #f3d49c;
+  border-radius: 50%;
+  color: #f7dfab;
+  background: rgba(31, 74, 79, .95);
+  clip-path: none;
+  box-shadow: 0 0 0 7px rgba(229, 180, 125, .18), 0 0 28px rgba(229, 180, 125, .72);
+  animation: secret-island-pulse 1.7s ease-in-out infinite;
+}
+
+.portal-gate--signal .portal-gate__ring { box-shadow: 0 0 32px rgba(247, 211, 145, .95), inset 0 0 22px #e7c2aa; }
+.portal-gate--signal small { color: #fff8df; background: #a45743; }
 
 .portal-gate {
   position: absolute;
@@ -91,14 +106,30 @@
 
 @keyframes portal-spin { to { transform: rotate(360deg); } }
 @keyframes portal-float { 50% { transform: translateY(-7px) scale(1.04); } }
+@keyframes secret-island-pulse { 50% { transform: scale(1.12); box-shadow: 0 0 0 12px rgba(229,180,125,.08), 0 0 38px rgba(229,180,125,.9); } }
 
 @media (max-width: 650px) {
-  .portal-gate { right: 50%; top: 25%; transform: translateX(50%) scale(.82); }
+  .portal-gate {
+    top: auto;
+    right: 8px;
+    bottom: 28px;
+    transform: scale(.58);
+    transform-origin: right bottom;
+  }
+  .portal-gate small { display: none; }
   .world-map--beyond { background-position: center; }
-  .world-map--beyond .portal-gate { top: 43%; left: 50%; right: auto; transform: translateX(-50%) scale(.68); }
+  .world-map--beyond .portal-gate {
+    top: auto;
+    right: auto;
+    bottom: 28px;
+    left: 8px;
+    transform: scale(.58);
+    transform-origin: left bottom;
+  }
   .world-map--beyond .island--1 { left: 4%; top: 10%; }
   .world-map--beyond .island--2 { right: 4%; left: auto; top: 10%; }
   .world-map--beyond .island--3 { right: 50%; top: 67%; transform: translateX(50%); }
+  .world-map--beyond .island--4 { right: 4%; top: 67%; bottom: auto; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -106,4 +137,5 @@
   .portal-gate__ring::before,
   .portal-gate__ring::after,
   .portal-gate__ring i { animation: none; }
+  .world-map--beyond .island--secret .island__rock { animation: none; }
 }

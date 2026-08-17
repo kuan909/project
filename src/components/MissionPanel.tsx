@@ -27,7 +27,13 @@ export function MissionPanel({ mission, onChoose, onClose }: MissionPanelProps) 
           <h2>{chosen ? chosen.label : mission.title}</h2>
           <p>{chosen ? chosen.outcome : mission.description}</p>
           {chosen ? (
-            <button className="continue-button" onClick={() => onChoose(chosen)}>Продолжить путь →</button>
+            <>
+              <div className="artifact-reward">
+                <span>{mission.artifact.icon}</span>
+                <div><small>ПОЛУЧЕН АРТЕФАКТ</small><strong>{mission.artifact.name}</strong></div>
+              </div>
+              <button className="continue-button" onClick={() => onChoose(chosen)}>Продолжить путь →</button>
+            </>
           ) : <div className="choice-list">
             {mission.choices.map((choice) => (
               <button className="choice" key={choice.label} onClick={() => setChosen(choice)}>

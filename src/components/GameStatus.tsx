@@ -1,4 +1,5 @@
 import type { GameState } from '../lib/game';
+import { ArtifactCollection } from './ArtifactCollection';
 
 type GameStatusProps = {
   state: GameState;
@@ -12,6 +13,7 @@ export function GameStatus({ state }: GameStatusProps) {
         <div><strong>Курьер</strong><small>борт «Ласточка»</small></div>
       </div>
       <div className="meters" aria-label="Состояние самолёта">
+        <ArtifactCollection collected={state.artifacts} />
         {state.piratesAboard && <span className="crew-status" title="Спасённые пираты летят с тобой">☠ Экипаж</span>}
         <Meter icon="●" label="Топливо" value={state.fuel} />
         <Meter icon="◇" label="Корпус" value={state.hull} />

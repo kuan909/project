@@ -34,6 +34,8 @@ function ActionAnimation({ action, dialogue }: { action: string; dialogue: strin
     'give-part': { label: 'Деталь передана!', picture: '🧑‍✈️　⚙　🧑‍🔧' },
     'see-stars': { label: 'Материк найден!', picture: '🔭　✦　🌍' },
     'deliver-film': { label: 'Плёнка доставлена!', picture: '🧑‍✈️　▣　🔭' },
+    'restore-archive': { label: 'Архив пробудился!', picture: '◯　✦　◯' },
+    'read-compass': { label: 'Новый маршрут найден!', picture: '🧭　✦　➤' },
   };
   const event = events[action];
   return (

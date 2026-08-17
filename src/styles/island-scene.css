@@ -14,6 +14,7 @@
 .visit-scene--harbor { --scene-image: url('/assets/portal-harbor.jpg'); }
 .visit-scene--windfarm { --scene-image: url('/assets/portal-windfarm.jpg'); }
 .visit-scene--observatory { --scene-image: url('/assets/portal-observatory.jpg'); }
+.visit-scene--echo { --scene-image: url('/assets/portal-echo.jpg'); }
 
 .visit-scene__shade {
   position: absolute;

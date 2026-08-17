@@ -1,0 +1,27 @@
+.artifact-button { display: flex; align-items: center; gap: 8px; padding: 6px 9px; border: 1px solid rgba(229, 180, 125, .38); border-radius: 4px; color: #edf3ed; background: transparent; text-align: left; }
+.artifact-button > span { color: #e5b47d; font-size: 20px; }
+.artifact-button small, .artifact-button b { display: block; }
+.artifact-button small { color: #9fb5b4; font-size: 8px; }
+.artifact-button b { margin-top: 2px; font-size: 12px; }
+.artifact-button:hover { background: rgba(255,255,255,.08); }
+.artifact-overlay { position: fixed; z-index: 50; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(10,31,38,.76); backdrop-filter: blur(7px); }
+.artifact-collection { position: relative; width: min(760px, 100%); max-height: calc(100vh - 40px); overflow-y: auto; padding: 34px; border-radius: 10px; color: #193b46; background: #f7f1e5; box-shadow: 0 22px 70px rgba(5,20,24,.4); }
+.artifact-collection h2 { margin-top: 7px; font: 800 34px 'Playfair Display', serif; }
+.artifact-collection > p { margin-top: 7px; color: #6b7b77; font-size: 13px; }
+.artifact-close { position: absolute; top: 13px; right: 13px; width: 36px; height: 36px; border: 0; border-radius: 50%; color: #31545a; background: #e5e4d9; font-size: 22px; }
+.artifact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; margin-top: 24px; }
+.artifact-grid article { min-height: 145px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; border: 1px dashed #c9ceca; border-radius: 7px; color: #89938f; text-align: center; background: rgba(255,255,255,.42); }
+.artifact-grid article.is-collected { border-style: solid; border-color: #d8b487; color: #294b52; background: #fffaf0; }
+.artifact-grid article > span { font-size: 34px; }
+.artifact-grid strong { margin-top: 8px; font-size: 13px; }
+.artifact-grid small { margin-top: 5px; color: #84908c; font-size: 10px; line-height: 1.4; }
+.artifact-reward { display: flex; align-items: center; gap: 10px; margin: 16px 0 12px; padding: 10px 12px; border: 1px solid #d8b487; border-radius: 6px; color: #294b52; background: #fff8e8; }
+.artifact-reward > span { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 50%; color: #f7dfab; background: #294b52; font-size: 19px; }
+.artifact-reward small, .artifact-reward strong { display: block; }
+.artifact-reward small { color: #a16b49; font-size: 8px; letter-spacing: .1em; }
+.artifact-reward strong { margin-top: 2px; font-size: 12px; }
+@media (max-width: 650px) {
+  .artifact-button div { display: none; }
+  .artifact-grid { grid-template-columns: repeat(2, 1fr); }
+  .artifact-collection { padding: 26px 16px; }
+}
