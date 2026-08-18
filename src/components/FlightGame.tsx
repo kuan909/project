@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 
-type FlightGameProps = { destination: string; onLand: () => void; onCrash: () => void };
+type FlightGameProps = {
+  destination: string;
+  onLand: () => void;
+  onCrash: () => void;
+  crashButtonLabel?: string;
+};
 type FlightStatus = 'flying' | 'landed' | 'crashed';
 
 const FLIGHT_TIME = 20;
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
-export function FlightGame({ destination, onLand, onCrash }: FlightGameProps) {
+export function FlightGame({ destination, onLand, onCrash, crashButtonLabel = 'Начать заново' }: FlightGameProps) {
   const controls = useRef({ roll: 0, pitch: 0, throttle: .72 });
   const flight = useRef({ altitude: 72, roll: 0, elapsed: 0, speed: 170, fuel: 100 });
   const lastFrame = useRef<number | null>(null);
@@ -112,7 +117,7 @@ export function FlightGame({ destination, onLand, onCrash }: FlightGameProps) {
           <span>{status === 'crashed' ? '⚠' : '✓'}</span>
           <h2>{status === 'crashed' ? 'Самолёт упал' : 'Посадка разрешена!'}</h2>
           <p>{status === 'crashed' ? 'Для посадки: высота до 950 м, крен до 18°, скорость 105–175 км/ч.' : `Ты мягко приземлился на острове «${destination}».`}</p>
-          <button onClick={status === 'crashed' ? onCrash : onLand}>{status === 'crashed' ? 'Начать заново' : 'Вернуться на карту'}</button>
+          <button onClick={status === 'crashed' ? onCrash : onLand}>{status === 'crashed' ? crashButtonLabel : 'Вернуться на карту'}</button>
         </div>
       )}
     </section>

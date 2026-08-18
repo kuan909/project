@@ -4,11 +4,12 @@ import type { GameState } from '../lib/game';
 type EndingScreenProps = {
   state: GameState;
   onRestart: () => void;
+  onStartChapterTwo: () => void;
 };
 
 type EndingId = 'earth' | 'sky' | 'secret';
 
-export function EndingScreen({ state, onRestart }: EndingScreenProps) {
+export function EndingScreen({ state, onRestart, onStartChapterTwo }: EndingScreenProps) {
   const [ending, setEnding] = useState<EndingId | null>(null);
 
   if (!state.piratesAboard) {
@@ -69,7 +70,14 @@ export function EndingScreen({ state, onRestart }: EndingScreenProps) {
         <span>Корпус <b>{state.hull}/10</b></span>
         <span>Доверие <b>{state.trust}/10</b></span>
       </div>
-      <button className="primary-button" onClick={onRestart}>Пройти ещё раз</button>
+      <div className="chapter-two-question">
+        <strong>Перейти во вторую главу?</strong>
+        <div>
+          <button className="primary-button" onClick={onStartChapterTwo}>Да</button>
+          <button className="primary-button" onClick={onStartChapterTwo}>Да</button>
+        </div>
+      </div>
+      <button className="ending__replay" onClick={onRestart}>Пройти первую главу ещё раз</button>
     </section>
   );
 }

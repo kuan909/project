@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { EndingScreen } from '../components/EndingScreen';
 import { FlightGame } from '../components/FlightGame';
 import { FlightMenu } from '../components/FlightMenu';
@@ -23,8 +24,10 @@ import '../styles/island-scene.css';
 import '../styles/flight.css';
 import '../styles/flight-menu.css';
 import '../styles/radio.css';
+import { saveChapter } from '../lib/progress';
 
 export function GamePage() {
+  const [, navigate] = useLocation();
   const [state, setState] = useState(initialGameState);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
   const [isChoosingDestination, setIsChoosingDestination] = useState(false);
@@ -56,6 +59,11 @@ export function GamePage() {
     setRadioReport(null);
   };
 
+  const startChapterTwo = () => {
+    saveChapter(2);
+    navigate('/chapter-2');
+  };
+
   const chooseDestination = () => {
     setIsFlightMenuOpen(false);
     setIsChoosingDestination(true);
@@ -79,7 +87,7 @@ export function GamePage() {
     <main className="game-shell">
       <GameStatus state={state} />
       {isFinale ? (
-        <EndingScreen state={state} onRestart={restart} />
+        <EndingScreen state={state} onRestart={restart} onStartChapterTwo={startChapterTwo} />
       ) : (
         <>
           <section className="mission-intro">

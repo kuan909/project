@@ -58,6 +58,11 @@
   background: #bd674c;
   font-weight: 700;
 }
+.ending__replay { margin-top: 12px; border: 0; color: #657773; background: transparent; font-size: 11px; text-decoration: underline; }
+.chapter-two-question { width: min(390px,100%); margin-top: 4px; padding: 18px; border: 1px solid #d3c6aa; border-radius: 8px; background: rgba(255,255,255,.56); }
+.chapter-two-question > strong { display: block; margin-bottom: 14px; color: #294b52; font: 700 20px 'Playfair Display',serif; }
+.chapter-two-question > div { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.chapter-two-question .primary-button { width: 100%; }
 .finale__rescue {
   display: flex;
   align-items: center;

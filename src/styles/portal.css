@@ -117,7 +117,12 @@
     transform-origin: right bottom;
   }
   .portal-gate small { display: none; }
-  .world-map--beyond { background-position: center; }
+  .world-map--beyond {
+    background-color: #17284b;
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+  }
   .world-map--beyond .portal-gate {
     top: auto;
     right: auto;
@@ -126,10 +131,10 @@
     transform: scale(.58);
     transform-origin: left bottom;
   }
-  .world-map--beyond .island--1 { left: 4%; top: 10%; }
-  .world-map--beyond .island--2 { right: 4%; left: auto; top: 10%; }
-  .world-map--beyond .island--3 { right: 50%; top: 67%; transform: translateX(50%); }
-  .world-map--beyond .island--4 { right: 4%; top: 67%; bottom: auto; transform: none; }
+  .world-map--beyond .island--1 { left: 2%; top: 13%; }
+  .world-map--beyond .island--2 { right: 50%; left: auto; top: 8%; transform: translateX(50%); }
+  .world-map--beyond .island--3 { right: 2%; top: 13%; transform: none; }
+  .world-map--beyond .island--4 { right: 50%; top: 37%; bottom: auto; transform: translateX(50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -17,8 +17,9 @@ const cors = {
 type GeminiResponse = {
   candidates?: Array<{
     content?: {
-      parts?: Array<{ text?: unknown }>;
+      parts?: Array<{ text?: unknown; thought?: boolean }>;
     };
+    finishReason?: string;
   }>;
 };
 
@@ -54,11 +55,15 @@ Deno.serve(async (req) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          systemInstruction: system ? { parts: [{ text: system }] } : undefined,
+          systemInstruction: {
+            parts: [{
+              text: `${system}\nОтвечай только по-русски простыми словами. Не показывай внутренние рассуждения. Всегда заканчивай последнее предложение.`,
+            }],
+          },
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
-            maxOutputTokens: 120,
-            temperature: 0.7,
+            maxOutputTokens: 800,
+            temperature: 0.5,
           },
         }),
       },
@@ -70,8 +75,13 @@ Deno.serve(async (req) => {
       return json({ error: 'AI сейчас не ответил. Попробуй ещё раз чуть позже.' }, 502);
     }
 
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (typeof text !== 'string' || !text.trim()) {
+    const parts = data?.candidates?.[0]?.content?.parts ?? [];
+    const text = parts
+      .filter((part) => part.thought !== true && typeof part.text === 'string')
+      .map((part) => part.text as string)
+      .join('')
+      .trim();
+    if (!text) {
       console.error('Gemini returned an empty response', data);
       return json({ error: 'AI вернул пустой ответ. Попробуй переформулировать запрос.' }, 502);
     }
